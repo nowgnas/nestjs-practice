@@ -9,7 +9,8 @@ export class UsersService {
   ) {}
 
   async findAll(): Promise<User[]> {
-    return this.userRepository.findAll<User>();
+    const users = this.userRepository.findAll<User>();
+    return users;
   }
 
   async insert(id: string, name: string) {

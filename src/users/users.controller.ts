@@ -1,4 +1,12 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpStatus,
+  Next,
+  Post,
+  Req,
+  Res,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -10,5 +18,11 @@ export class UsersController {
     const id = '22';
     const name = 'lee';
     await this.userService.insert(id, name);
+  }
+
+  @Get()
+  async findAll(@Res() res: any) {
+    const users = await this.userService.findAll();
+    res.status(HttpStatus.OK).json(users);
   }
 }
