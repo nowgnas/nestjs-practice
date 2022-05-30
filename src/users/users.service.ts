@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { createUserDto } from './dto/create-user.dot';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -13,8 +14,10 @@ export class UsersService {
     return users;
   }
 
-  async insert(id: string, name: string) {
-    const status = await this.userRepository.create({ id, name });
+  async insert(userDto: createUserDto) {
+    console.log(userDto);
+
+    const status = await this.userRepository.create({ ...userDto });
     return status;
   }
 }
